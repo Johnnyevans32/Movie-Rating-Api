@@ -4,8 +4,8 @@ import requests
 import json
 
 ins_num = random.randint(0, 200000)
-test_url = 
-end = 
+test_url = 'https://movie-rating-api.herokuapp.com/'
+end = '/v1/movie/add'
 test_end = test_url + end
 
 class Test_For_Add_Movie_Endpoint(TestCase):

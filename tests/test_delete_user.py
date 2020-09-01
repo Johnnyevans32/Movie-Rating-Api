@@ -4,7 +4,7 @@ import requests
 import json
 import random
 
-test_url = 
+test_url = 'https://movie-rating-api.herokuapp.com/'
 end = '/v1/user/delete/'
 test_end = test_url + end
 

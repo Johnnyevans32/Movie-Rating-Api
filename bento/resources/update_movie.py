@@ -81,7 +81,7 @@ class UpdateMovie(Resource):
                     db.session.commit()
                     resp = {
                         "status": "Success",
-                        "message": "Successful Movie rating",
+                        "message": "Movie Updated Successfully",
                         "result": movieSchema.dump(movie)
                     }
                     return resp, 201

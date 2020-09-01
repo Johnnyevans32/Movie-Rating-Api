@@ -4,49 +4,55 @@ import requests
 import json
 
 ins_num = random.randint(0, 200000)
-test_url = 
-end = 
+test_url = 'https://movie-rating-api.herokuapp.com/'
+end = '/v1/user/update/'
 test_end = test_url + end
 
 class Test_For_Update_User_Endpoint(TestCase):
 
-    def test_get_comments_no_entry_res(self):
-        response = requests.patch(test_end)
+    def test_user_no_entry_res(self):
+        response = requests.patch(test_end + user_id)
         print(response.text)
         self.assertEqual(response.status_code, 400)
 
-    def test_wrong_complaint_id_res(self):
-        # Ensures wrong complaint id means 403 error
+    def test_invalid_user_res(self):
+        user_id = 'ss'
         data = {
-        	'id': 1896
+            'name': '',
+            'email':'',
+            'password': ''
         }
-        response = requests.patch(test_end,
+        response = requests.patch(test_end + user_id,
                                  headers={'Content-Type': 'application/json'}, data=json.dumps(data))
         res = response.json()
-        self.assertEqual(response.status_code, 403)
-        self.assertEqual(res['message'], "Complaint with id: {} does not exist".format(data['id']))
+        self.assertEqual(response.status_code, 400)
+        self.assertEqual(res['message'], "Bad Request")
 
-    def test_no_comment_res(self):
-        # Ensures valid complaint id with no comments means 404 error
+    def test_valid_user_res(self):
+        user_id = 1
         data = {
-            'id': 1
+            'name': '',
+            'email':'',
+            'password': ''
         }
-        response = requests.patch(test_end,
-                                 headers={'Content-Type': 'application/json'}, data=json.dumps(data))
-        res = response.json()
-        self.assertEqual(response.status_code, 404)
-        self.assertEqual(res['message'], "No Comments")
-
-    def test_comment_res(self):
-        # Ensures valid complaint id with comments means 200 and success
-        data = {
-            'id': 3
-        }
-        response = requests.patch(test_end,
+        response = requests.patch(test_end + user_id,
                                  headers={'Content-Type': 'application/json'}, data=json.dumps(data))
         res = response.json()
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(res['message'], "Retrieved comments Successfully")
+        self.assertEqual(res['message'], "User Updated Successfully")
+
+    def test_wrong_user_res(self):
+        user_id = 9929922
+        data = {
+            'name': '',
+            'email':'',
+            'password': ''
+        }
+        response = requests.patch(test_end + user_id,
+                                 headers={'Content-Type': 'application/json'}, data=json.dumps(data))
+        res = response.json()
+        self.assertEqual(response.status_code, 404)
+        self.assertEqual(res['message'], "User Not Found")
 
 if __name__ == '__main__':
     unittest.main()
