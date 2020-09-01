@@ -3,7 +3,6 @@ from flask_restful_swagger_2 import swagger
 from bento.models import Movie, User, movieSchema
 from bento.models import db
 from sqlalchemy.exc import IntegrityError
-from ..common.helpers import contains_offensive_word
 
 
 class UpdateMovie(Resource):

@@ -79,7 +79,7 @@ def app_factory():
     api.add_resource(UpdateUser, '/v1/user/update/<string:user_id>')
 
     api.add_resource(AddMovie, '/v1/movie/add')
-    api.add_resource(ListMovie, '/v1/movie/all')
+    api.add_resource(ListMovie, '/v1/movie/page<string:page_num>')
     api.add_resource(GetMovies, '/v1/movie/<string:user_id>')
     api.add_resource(GetMovie, '/v1/movie/<string:user_id>/<string:title>')
     api.add_resource(DeleteMovie, '/v1/movie/delete/<string:user_id>/<string:title>')

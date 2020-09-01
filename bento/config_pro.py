@@ -12,3 +12,5 @@ else:
     SQLALCHEMY_DATABASE_URI = "sqlite:///{}".format(
         os.path.join(BASEDIR, "bento.db"))
 SQLALCHEMY_TRACK_MODIFICATIONS = False
+
+API_KEY = 'eea4f399e1af6d56f7814b75b9743566'
