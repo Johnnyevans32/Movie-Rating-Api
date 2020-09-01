@@ -9,7 +9,7 @@ from bento.models import User,db, Movie, movie_schema_many
 class DeleteMovie(Resource):
     @swagger.doc({
         'tags': ['Movie'],
-        'description': 'Delete movie',
+        'description': 'Delete a movie from a user\'s list',
         'parameters': [
             {
                 'name': 'user_id',

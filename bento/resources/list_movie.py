@@ -10,7 +10,7 @@ API_KEY = 'eea4f399e1af6d56f7814b75b9743566'
 class ListMovie(Resource):
     @swagger.doc({
         'tags': ['Movie'],
-        'description': 'Retrieve all Movies',
+        'description': 'Retrieve all Movies available from the movie db',
         'parameters': [
             {
                 'name': 'page_num',

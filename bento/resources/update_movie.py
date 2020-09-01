@@ -9,7 +9,7 @@ class UpdateMovie(Resource):
 
     @swagger.doc({
         'tags': ['Movie'],
-        'description': 'Update the Rating of a Movie',
+        'description': 'Update the Rating of a Movie from a user\'s list',
         'parameters': [
             {
                 'name': 'user_id',

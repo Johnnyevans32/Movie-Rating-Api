@@ -9,7 +9,7 @@ from bento.models import User, Movie, movieSchema
 class GetMovie(Resource):
     @swagger.doc({
         'tags': ['Movie'],
-        'description': 'Retrieve movie by user id',
+        'description': 'Retrieve a movie from a user\'s list',
         'parameters': [
             {
                 'name': 'user_id',

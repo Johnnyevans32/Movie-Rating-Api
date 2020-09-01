@@ -14,7 +14,7 @@ class AddMovie(Resource):
 
     @swagger.doc({
         'tags': ['Movie'],
-        'description': 'Add and Rate a Movie',
+        'description': 'Add and Rate a Movie by a user',
         'parameters': [
             {
                 'name': 'body',
