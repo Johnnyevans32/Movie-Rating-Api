@@ -3,7 +3,7 @@ from flask_restful_swagger_2 import swagger
 from datetime import datetime
 from bento.models import User, userSchema, db
 import hashlib
-
+from passlib.hash import sha256_crypt
 
 class UpdateUser(Resource):
     def __init__(self):
@@ -74,7 +74,7 @@ class UpdateUser(Resource):
                     if args[arg] and arg in User.__dict__:
                         setattr(User, arg, args[arg])
                 user.updated_at = datetime.utcnow()
-                password = hashlib.sha1(str(args.get('password')).encode('utf-8')).hexdigest().upper()
+                password = sha256_crypt.hash(str(args.get('password')))
                 user.password = password
                 db.session.add(user)
                 db.session.commit()

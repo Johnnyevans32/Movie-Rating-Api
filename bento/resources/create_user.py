@@ -4,7 +4,7 @@ from bento.models import User, userSchema
 from bento.models import User, db
 from sqlalchemy.exc import IntegrityError
 import hashlib
-
+from passlib.hash import sha256_crypt
 
 class CreateUser(Resource):
     def __init__(self):
@@ -57,7 +57,7 @@ class CreateUser(Resource):
     def post(self):
 
         args = self.parser.parse_args()
-        password = hashlib.sha1(str(args.get('password')).encode('utf-8')).hexdigest().upper()
+        password = sha256_crypt.hash(str(args.get('password')))
         user = User(
             email=args.get('email'),
             name=args.get('name'),

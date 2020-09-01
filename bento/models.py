@@ -1,5 +1,6 @@
 from datetime import datetime
 import hashlib
+from passlib.hash import sha256_crypt
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 
@@ -17,7 +18,7 @@ class User(db.Model):
     updated_at = db.Column(db.DateTime, default=datetime.utcnow)
 
     def encode_password(self):
-        self.password = hashlib.sha1(str(self.password).encode('utf-8')).hexdigest().upper()
+        self.password = sha256_crypt.hash(str(self.password))
 
     def __str__(self):
         return "<Customer: {}; {} at {}>".format(self.name, self.email, self.created_at)
@@ -26,7 +27,7 @@ class Movie(db.Model):
     __tablename__ = 'movie'
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, nullable=True)
-    title = db.Column(db.String(80), unique=True, nullable=False)
+    title = db.Column(db.String(80), nullable=False)
     rating = db.Column(db.Integer, nullable=False)
     movie_tag = db.Column(db.String, nullable=False, unique=True)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)

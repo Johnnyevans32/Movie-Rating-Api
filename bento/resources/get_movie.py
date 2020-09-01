@@ -40,7 +40,7 @@ class GetMovies(Resource):
         if movies is None:
             resp = {
                 'status': 'Failure',
-                'message': 'User Not Found',
+                'message': 'Movies Not Found',
                 'result': ''
             }
 
